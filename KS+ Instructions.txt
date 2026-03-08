@@ -1,0 +1,1037 @@
+This document details the use of many KS+ features.
+____________________________________________________________
+Override Custom Objects_____________________________________
+	Step 1.) Create sprite sheet according to instructions below
+	Step 2.) Add image to Custom Objects folder
+	Step 3.) Add instructions to World.ini
+		[Custom Object 1]
+		Image=YourSpriteSheet.png
+		TileWidth=48
+		Bank=4
+		Object=9
+		Hurts=False
+		;This would give your sprite the behavior of the purple spider object
+		;Hurts=False makes it safe to touch; Does not work with everything.
+	
+____________________________________________________________
+Override Custom Objects sprite sheet instructions___________
+	Must be a .png file
+	Use an alpha channel or RGB(255,0,255) for transparency
+	Frame size is 24x24 pixels unless specified.
+	Opacity is 100% (0% transparent) unless specified.
+	Objects that face left and right should be drawn facing right. 
+	Some objects with identical animations have been listed together.
+	If a sprite sheet has 4 frames of animation they are identified as 0-3 (0, 1, 2, 3.)
+	Sprite sheet frames are ordered left to right, then top to bottom (see figure 1.)
+		Figure 1.) Sprite sheet ordering example
+			0 1 2 3
+			4 5 6 7
+	For objects that kill on touch, the original animations dictate collision.
+
+Bank 0 System
+	Objects 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 35
+		See "Custom Powers" section below to change them all at once.
+	Object 3
+		Frames 0-11 looping animation
+	Objects 4, 7, 8, 9, 10, 21, 22, 23, 24, 35
+		Frames 0-7 looping animation
+		Note: Powers 9, 21, 22, 23, 24 do not have animations originally.
+	Object 5
+		Frames 0-6 looping animation
+	Object 6
+		Frames 0-5 looping animation
+	All other objects not implemented.
+	Note: OCO powers are not affected by "Custom Powers"
+Bank 1 Liquids
+	Objects 1, 2, 14
+		Frames 0-15 water motion
+	Objects 3, 4, 15
+		Frames 0-17 waterfall motion, opacity 61%
+	Object 5
+		Frames 0-38 lava motion
+	Objects 6, 13, 16
+		Frames 0-9 water motion, opacity 61%
+	Objects 10, 12
+		Frames 0-31 water motion
+	Objects 19, 22
+		Frames 0-23 water motion
+	Objects 20, 23
+		Frames 0-20 waterfall motion, opacity 61%
+	Objects 7, 8, 9, 11, 17, 18, 21, 24
+		Not implemented
+Bank 2 Flyers
+	Objects 1, 2, 5, 6, 7, 14, 22
+		Frames 0-8 flight
+	Object 3
+		Frame 0 stopped
+		Frames 1-2 flies
+	Object 4
+		Frame 0 stopped
+		Frames 1-4 flies
+	Objects 9, 10
+		Frames 0-11 flight
+		Left facing alignment is off
+	Object 11
+		Frames 0-9 normal flight
+		Frames 10-17 In wall flight, opacity 71.9%
+	Object 12
+		Frames 0-9 normal flight
+		Frames 10-17 In wall flight, opacity 71.9%
+	Objects 15
+		Frames 0-3 flight
+	Objects 16, 17
+		Frames 0-3 flight
+	Objects 20, 21
+		Frame 0 stopped
+		Frames 1-6 flight
+	Object 24
+		Frames 0-3 random flight
+		Frames 4-7 attack flight
+	Objects 25, 27
+		Frame 0 stopped
+		Frames 1-10 flight
+	Object 26
+		Frame 0 stopped
+		Frames 1-8 flight
+	Object 28
+		Frame 0 stopped
+		Frames 1-10 hops
+	Object 29
+		Frame 0 stopped, this frame only faces left
+		Frames 1-12 flight
+	Object 30
+		Frame 0-6 stands
+		Frames 7-13 opens beak
+		Frames 14-18 blinks
+	Object 31
+		Frame 0-7 slow flight, opacity 53.1%
+		Frames 8-15 fast flight, opacity 53.1%
+	Object 32
+		Frames 0-3 flight
+	Objects 8, 13, 18, 19, 23
+		Not implemented
+Bank 3 Knytt & Fluff
+	Objects 1, 5, 7, 16, 17, 18
+		Frame 0 stopped
+		Frames 1-5 walks
+	Objects 2, 8
+		Frame 0 stopped
+		Frames 1-5 walks
+		Frames 6-13 runs
+	Objects 3, 23, 25
+		Frame 0 stopped
+		Frames 1-6 walks
+	Objects 4, 33
+		Frame 0 stopped
+		Frames 1-5 walks
+		Frames 6-10 extends spikes
+		Frames 11-15 retracts spikes
+		Cannot be made harmless
+	Objects 6, 22
+		Frame 0 stopped
+		Frames 1-6 walks
+		Frames 7-11 extends spikes
+		Frames 12-16 retracts spikes
+		Cannot be made harmless
+	Object 9, 10
+		Frame 0 stopped
+		Frames 1-8 walks
+		Left facing alignment is off
+	Object 11
+		Frame 0 stopped
+		Frames 1-9 walks
+		Left facing alignment is off
+	Object 12
+		Frames 0-2 blinks
+		Frames 3-11 wavers
+		Frames 12-20 hops
+	Object 13
+		Frames 0-2 blinks
+		Frames 3-10 looks sideways
+		Frames 11-16 wavers
+	Objects 14, 26, 38, 41
+		Frame 0 stopped
+	Objects 15, 28, 31, 40
+		Frame 0 stopped
+		Frames 1-10 walks
+	Objects 19, 36, 44
+		Frames 0-3 stopped
+		Frames 4-8 walks
+	Object 20
+		Frames 0-15 stopped
+		Frames 16-31 walks
+	Object 21
+		Frames 0-2 blinks 200
+		Frames 3-9 wavers 150
+		Frames 10-24 wavers 200
+		All frames facing left
+	Object 24
+		Frames 0-3 sits
+		Frames 4-7 stands
+		Frames 8-13 walks
+	Object 27
+		Frames 0-2 blinks
+		Frames 3-11 wavers
+		Frames 12-20 hops
+		All frames facing left
+	Object 30
+		Frames 0-5 flies
+	Object 32
+		Frame 0 stopped
+		Frames 1-6 flaps wing (repeats 3 times)
+	Objects 34, 35
+		Frame 0 stopped
+		Frames 1-11 walks
+	Object 37
+		Frame 0-2 blinks
+		Frames 3-7 closes eyes
+	Object 39
+		Frames 0-2 blinks
+		Frames 3-11 wavers
+		Frames 12-22 hops
+	Objects 42, 43
+		Frames 0-2 blinks
+		Frames 3-9 moves tail
+		Frames 10-13 moves ears
+	Object 29
+		Not Implemented
+Bank 4 Meanies
+	Objects 1, 6, 7
+		Frame 0 stopped
+		Frames 1-4 walks
+	Objects 2, 8, 13
+		Frame 0 stopped facing up
+		Frames 1-4 walks facing up
+		Frame 5 stopped facing down
+		Frames 6-9 walks facing down
+	Object 3
+		Frames 0-5 stopped
+		Frames 6-12 walks
+	Objects 4, 5
+		Frames 0-4 stopped
+		Frames 5-8 walks
+	Object 9
+		Frame 0 stopped
+		Frames 1-11 walks
+		Tile Width=48
+	Object 10
+		Frames 0-3 walks up
+		Frames 4-7 walks down
+		Frames 8-18 shoots
+	Object 11
+		Frames 0-3 walks up
+		Frames 4-7 walks down
+		Frames 8-18 shoots
+		All frames face left
+	Object 12, 15
+		Frame 0 stopped
+		Frames 1-7 walks
+	Object 14
+		Frame 0 stopped
+		Frames 1-10 walks
+	Object 16
+		Frames 0-5 stopped
+		Frames 6-12 walks
+		Left facing alignment is off
+	Object 17
+		Frame 0 stopped
+		Frames 1-6 walks
+	Object 18
+		Frames 0-3 stopped
+		Frames 4-8 extends spikes
+		Frames 9-13 retracts spikes
+		Cannot be made harmless
+	Objects 19, 20
+		Frame 0 stopped
+		Frames 1-5 walks
+		Frames 6-10 sits
+		Frames 11-15 stands
+		Cannot be made harmless
+	Object 21
+		Frames 0-5 walks up
+		Frames 6-11 walks down
+		Frames 12-22 shoots
+		All frames face left
+	Object 22
+		Frames 0-5 walks up
+		Frames 6-11 walks down
+		Frames 12-22 shoots
+Bank 5 Not implemented
+Bank 6 Traps
+	Object 1
+		Frame 0 static
+		Tile Width=96
+	Objects 2, 3, 4
+		Frame 0 static
+	Object 5
+		Frame 0 hides
+		Frames 1-5 eats
+		Tile Width=48
+		Tile Height=48
+		Cannot be made harmless
+	Object 6
+		Frames 0-7 waits
+		Frames 8-15 shoots
+	Objects 7, 9
+		Frame 0 waits
+		Frames 1-9 shoots
+	Object 8
+		Frame 0 waits
+		Frames 1-5 drops
+		Cannot be made harmless
+	Objects 10, 11, 12, 13
+		Frame 0-3 hides
+		Frames 4-7 shows
+		Cannot be made harmless
+		All frames facing correct direction	
+	Objects 14, 15, 16, 17
+		Frame 0 static
+		Cannot be made harmless
+		Frame should face correct direction	
+Bank 7 Nature Effects
+	All Objects use color replacement instead of image replacement
+	Like custom skin and clothes for Juni calculate the color:
+		Red+(Green*256)+(Blue*256*256)
+		Red, Green, and Blue are on a scale of 0 to 255
+		A value of 0 makes the object invisible
+		Use 65536 for black (That's 1 bit of blue)
+	Declare the object in the World.ini as in this example:
+		[Custom Object 1]
+		Bank=7
+		Object=8
+		Color=65535
+		;creates yellow rain
+Bank 8 Decoration
+	Object 6, 11, 14
+		Frames 0-7 flickers
+	Object 7
+		Frames 0-8 flickers
+		Tile Width=48
+	Object 8
+		Frames 0-8 flickers
+	Object 9
+		Frames 0-4 pulsates
+	Object 10
+		Frames 0-5 sparkle 1
+		Frames 6-11 sparkle 2
+		Frames 12-17 sparkle 3
+		Frames 18-23 sparkle 4
+		Last frame of each set should be blank
+	Object 13
+		Frames 0-12 rotates
+	Objects 1, 2, 3, 4, 5, 12, 15, 16, 17
+		Not implemented
+Bank 9 Flowers
+	Objects 1, 2, 4, 5
+		Frame 0 stopped
+		Frames 1-3 opens
+		Frames 4-7 closes
+	Object 3
+		Frame 0 stopped
+		Frames 1-2 pulsates
+		Frames 3-6 shoots
+Bank 10 Bouncers
+	Objects 1, 2, 3, 8
+		Frame 0 begin ground collision
+		Frame 1 squashed on ground
+		Frame 2 begin jump
+		Frame 3 in the air
+	Object 4, 5
+		Frame 0 squashed on ground
+		Frames 1-2 begin jump
+		Frame 3 in the air
+	Objects 6, 7
+		Frame 0 stopped
+		Frames 1-5 walks
+		Frames 6-8 jumps
+	Object 9
+		Frames 0-18 moves
+	Object 10
+		Frames 0-17 moves
+	Object 11
+		Frames 0-2 blinks
+		Frames 3-6 jumps
+		Frames 7-10 blinks, loops 4 times
+	Object 12
+		Frames 0-2 blinks
+		Frames 3-14 big jump
+		Frames 15-18 small jump, loops 2 times
+	Object 13
+		Frames 0-2 blinks
+		Frames 3-11 small jump
+		Frames 12-28 big jump
+Bank 11 Disks
+	Objects 1, 3, 4, 5, 7, 8, 10
+		Frame 0 stopped
+		Frames 1-4 walks
+	Object 2, 6, 9
+		Frames 0-3 shoots
+		Frames 4-7 walks
+Bank 12 Ghosts
+	Not Implemented
+Bank 13 Robots
+	Objects 1, 2, 14
+		Frames 0-6 stopped
+	Object 3
+		Frame 0 laser off
+		Frames 1-3 laser on
+		Tile Height=96
+		Cannot be made harmless
+	Object 4
+		Frame 0 stopped
+		Frames 1-8 shoots
+		Tile Height=48
+		Tile Width=48
+	Object 5
+		Frames 0-3 stopped
+		Frames 4-5 moves
+	Object 6
+		Frames 0-8 stopped
+	Objects 7, 8, 10, 11
+		Frames 0-2 flickers
+		Cannot be made harmless
+	Objects 9, 12
+		Frames 0-2 flickers
+	Object 13
+		Frames 0-15 flies
+Bank 14 Earth Beings
+	Object 1
+		Frames 0-5 prepares to slide, opacity 68.75%
+		Frames 6-11 slides, opacity 68.75%
+	Object 2
+		Frames 0-5 prepares to slide
+		Frames 6-11 slides
+	Objects 3, 4, 6, 8, 13, 15
+		Frame 0 stopped
+		Frames 1-6 moves
+	Object 5, 7
+		Frames 0-3 blinks
+		Frames 4-11 jumps
+	Object 9, 14
+		Frame 0 stopped
+		Frames 1-7 moves
+	Object 10
+		Frames 0-2 blinks
+		Frames 3-14 wiggles
+		Frames 15-16 jumps
+	Object 11
+		Frame 0 stopped
+		Frames 1-9 moves
+	Object 12
+		Frame 0 stopped
+		Frames 1-10 moves
+		Frames 11-13 smiles
+	Object 16
+		Frames 0-3 blinks
+		Frames 4-9 extends spikes
+		Frames 10-15 retracts spikes
+		Tile Width=120
+		Tile Height=72
+		Offset Y=-24
+	Object 17
+		Frames 0-5 moves
+	Object 18
+		Frames 0-3 blinks
+		Frames 4-9 extends spikes
+		Frames 10-15 retracts spikes
+		Tile Width=120
+		Tile Height=72
+		Offset Y=24
+	Object 19
+		Frame 0 blank
+		Frames 1-5 pops up
+		Frames 6-10 hides
+		Cannot be made harmless
+	Object 20
+		Frame 0 blank
+		Frames 1-5 pops up
+		Frames 6-10 hides
+	Objects 21, 22, 23, 24
+		Frames 0-4 blinks
+		Frames 5-17 charges and shoots
+Bank 15 Blocks & Areas
+	Object 5
+		Frames 0-20 cycles
+	Objects 12, 23, 24, 27, 28, 29, 30
+		Frame 0 blocks
+		Frames 1-8 opens
+		Frame 9 blank
+	Objects 31, 32, 33, 34, 35, 36
+		Frame 0-9 blocks
+		Frames 10-17 opens
+		Frame 18 blank
+	Object 22
+		Frame 0 up
+		Frames 1-2 sinks
+		Frames 3-4 rises
+		Tile Height=48
+	Object 37, 38
+		Frame 0 untouched
+		Frame 1 triggered
+		Frames 2-7 breaks
+		Frames 8-17 disappears
+		Frame 18 blank
+	Objects (all others)
+		Not implemented
+Bank 16 Invisible
+	Not Implemented
+Bank 17 Creepy
+	Object 1
+		Frames 0-5 shoots, loops 4 times
+		Frames 6-12 walks
+	Object 2
+		Frame 0 stopped
+		Frames 1-6 walks
+		Frames 7-14 extends spikes
+		Cannot be made harmless
+	Object 3
+		Frames 0-7 rises
+		Frames 8-21 shoots
+		Frames 22-27 sinks
+		Frame 28 blank
+		Tile Height=48
+	Object 4, 5
+		Frame 0 stopped
+		Frames 1-3 opens
+		Frames 4-7 closes
+	Object 6
+		Frames 0-8 flies
+	Object 7
+		Frames 0-2 blinks
+		Frames 3-16 walks
+		Frames 17-30 shoots
+	Object 8
+		Frames 0-5 walks up
+		Frame 6 slides down
+		Frames 7-17 shoots
+	Object 9
+		Frames 0-5 walks up
+		Frame 6 slides down
+		Frames 7-17 shoots
+		All frames face left
+	Object 10
+		Frames 0-3 blinks
+		Frames 4-9 extends spikes
+		Frames 10-15 retracts spikes
+		Tile Width=120
+		Tile Height=72
+		Offset Y=-24
+	Object 11
+		Frames 0-3 blinks
+		Frames 4-9 extends spikes
+		Frames 10-15 retracts spikes
+		Tile Width=72
+		Tile Height=120
+		Offset X=-24
+	Object 12
+		Frames 0-3 blinks
+		Frames 4-9 extends spikes
+		Frames 10-15 retracts spikes
+		Tile Width=72
+		Tile Height=120
+		Offset X=24
+		All frames face left
+Bank 18 Underwater
+	Objects 1, 3, 4
+		Frames 0-7 swims
+	Objects 2, 5
+		Frames 0-3 swims
+	Object 6
+		Frames 0-7 rises
+		Frames 8-21 shoots
+		Frames 22-27 sinks
+		Frame 28 blank
+		Tile Height=48
+Bank 19 Collectibles
+	Objects 1, 2, 3, 5
+		Frames 0-8 flight
+	Object 4
+		Not implemented
+	Object 6
+		Frames 0-3 flight
+	Object 7
+		Frame 0 stopped
+		Frames 1-6 flight
+	Object 8
+		Frame 0 stopped
+		Frames 1-8 flight
+	Object 9
+		Frame 0 stopped
+		Frames 1-10 hops
+	Object 10
+		Frame 0 stopped, this frame only faces left
+		Frames 1-12 flight
+	Object 11
+		Frame 0-6 stands
+		Frames 7-13 opens beak
+		Frames 14-18 blinks
+	Objects 12, 20
+		Frame 0 stopped
+		Frames 1-6 walks
+	Objects 13, 15, 17
+		Frame 0 stopped
+		Frames 1-5 walks
+	Objects 14
+		Frame 0 stopped
+		Frames 1-6 walks
+		Frames 7-11 extends spikes
+		Frames 12-16 retracts spikes
+		Cannot be made harmless
+	Object 16
+		Frame 0 stopped
+		Frames 1-8 walks
+	Object 18
+		Frames 0-3 stopped
+		Frames 4-8 walks
+	Object 19
+		Frames 0-3 sits
+		Frames 4-7 stands
+		Frames 8-13 walks
+	Object 21
+		Frame 0 stopped
+		Frames 1-11 walks
+	Object 22
+		Frames 0-2 blinks
+		Frames 3-10 moves tail
+		Frames 11-14 moves ears
+	Object 23
+		Frames 0-4 stopped
+		Frames 5-8 walks
+	Object 24
+		Frame 0 stopped
+		Frames 1-4 walks
+	Object 25
+		Frames 0-3 walks up
+		Frames 4-7 walks down
+		Frames 8-18 shoots
+	Object 26
+		Frame 0 stopped
+		Frames 1-7 walks
+	Object 27
+		Frames 0-5 stopped
+		Frames 6-12 walks
+	Object 28
+		Frames 0-3 stopped
+		Frames 4-8 extends spikes
+		Frames 9-13 retracts spikes
+		Cannot be made harmless
+	Object 29
+		Frame 0 stopped
+		Frames 1-5 walks
+		Frames 6-10 sits
+		Frames 11-15 stands
+		Cannot be made harmless
+	Object 30
+		Frames 0-5 walks up
+		Frames 6-11 walks down
+		Frames 12-22 shoots
+		All frames face left
+	Object 31
+		Frame 0 hides
+		Frames 1-5 eats
+		Tile Width=48
+		Tile Height=48
+		Cannot be made harmless
+	Object 32
+		Frame 0 waits
+		Frames 1-5 drops
+		Cannot be made harmless
+	Object 33
+		Frame 0 waits
+		Frames 1-9 shoots
+	Objects 34, 35, 36
+		Frame 0 stopped
+		Frames 1-3 opens
+		Frames 4-7 closes
+	Object 37
+		Frames 0-2 blinks
+		Frames 3-11 small jump
+		Frames 12-28 big jump
+	Object 38, 40
+		Frames 0-3 shoots
+		Frames 4-7 walks
+	Objects 39
+		Frame 0 stopped
+		Frames 1-4 walks
+	Object 41
+		Frames 0-5 prepares to slide
+		Frames 6-11 slides
+	Objects 42, 45
+		Frame 0 stopped
+		Frames 1-6 moves
+	Object 43
+		Frames 0-2 blinks
+		Frames 3-14 walks
+		Frames 15-16 jumps
+	Object 44
+		Frame 0 stopped
+		Frames 1-10 moves
+		Frames 11-13 smiles
+	Object 46
+		Frame 0 blank
+		Frames 1-5 pops up
+		Frames 6-10 hides
+	Object 47
+		Frames 0-4 blinks
+		Frames 5-17 charges and shoots
+	Object 48
+		Frames 0-5 shoots, loops 4 times
+		Frames 6-12 walks
+	Object 49
+		Frame 0 stopped
+		Frames 1-6 walks
+		Frames 7-14 extends spikes
+		Cannot be made harmless
+	Object 50
+		Frames 0-7 rises
+		Frames 8-21 shoots
+		Frames 22-27 sinks
+		Frame 28 blank
+		Tile Height=48
+	Objects 51-150
+		See "Custom Coins" section below
+	Objects 151-199
+		See "Custom Artifacts" section below
+____________________________________________________________		
+Custom Objects B____________________________________________
+    [Custom Object B1]
+        Bank 254 can be used to declare 254 more Custom Objects.
+        Add the "B" to the group header.
+        Then use the correct object in the editor.
+____________________________________________________________		
+Custom Characters___________________________________________
+	Step 1.) Create a sprite sheets following the template.
+		Frames 0-9 Walks
+		Frames 10-21 Runs
+		Frames 22-28 Climbs
+		Frame 29 Slides
+		Frames 30-41 Falls, Loops from 34-41, 30-33 play on first pass only.
+		Frames 42-46 Jumps
+		Frame 47 Stopped
+		Frames 48-49 hologram
+		Frames 50-97 Same as 0-47 but 66.6% transparent, opacity 33.4%
+	Step 2.) Add sprite sheets to Custom Objects folder.
+	Step 3.) Declare sprite sheets in world.ini as follows:
+		[Custom Character]
+		Image1=MySpriteSheet.png
+		Image2=AnotherCharacter.png
+		...
+		Image255=YetAnother.png
+		Note: The Image number doesn't matter, this section is just for caching.
+	Step 4.) Set the starting character in the [World] group.
+		[World]
+		Character=MySpriteSheet
+		Note: It's the name of your image file minus the ".png"
+		Note: Leave blank or write "Juni" to use the default character
+	Now you have a custom character, but if you want to change characters during play
+	Step 5.) Use Shifts to change the character.
+		[x1000y1000]
+		ShiftCharacter(A)=MySpriteSheet
+		Note: It's the name of your image file minus the ".png"
+		Note: Write "Juni" to switch to the default character.
+____________________________________________________________
+Custom Umbrella_____________________________________________
+	When using a custom character, you can have a custom umbrella.
+	Step 1.) Create a sprite sheets following the template.
+		Frames 0-7 Opens
+		Frames 8-15 Closes
+		Frames 16-31 Same as 0-15 but 66.6% transparent, opacity 33.4%
+	Step 2.) Give your image the same filename as you custom character, but add a U to the beginning.
+		Example: MyCharacter.png needs UMyCharacter.png
+		Note: The U must be upper case or capitalized.
+	Step 3.) Place the image in the Custom Objects folder.
+	Note: There is no code necessary, the custom umbrella will appear with the matching custom character.
+	Note: If there is no custom umbrella file then the normal umbrella is used.
+	Warning! Custom umbrellas do not protect from projectiles.
+____________________________________________________________
+Custom Powers_______________________________________________
+	Step 1.) Create a sprite sheets following the template.
+		Frames 0-7 Run
+		Frames 8-15 Climb
+		Frames 16-23 Double Jump
+		Frames 24-31 High Jump
+		Frames 32-39 Ghost Eye
+		Frames 40-47 Detector
+		Frames 48-55 Umbrella
+		Frames 56-63 Hologram
+		Frames 64-71 Map
+		Frame 72 Red Key
+		Frame 73 Yellow Key
+		Frame 74 Blue Key
+		Frame 75 Purple Key
+	Step 2.) Add sprite sheets to Custom Objects folder.
+	Step 3.) Declare sprite sheets in world.ini as follows:
+		[World]
+		Powers=MyPowers.png
+	Step 4.) Create individual images for the Item Bar
+		Each image must be 24x24 pixels and have the correct name.
+			PowerIcon0.png = Run
+			PowerIcon1.png = Climb
+			PowerIcon2.png = Double Jump
+			PowerIcon3.png = High Jump
+			PowerIcon4.png = Ghost Eye
+			PowerIcon5.png = Detector
+			PowerIcon6.png = Umbrella
+			PowerIcon7.png = Hologram
+			PowerIcon8.png = Map
+			PowerIcon9.png = Red Key
+			PowerIcon10.png = Yellow Key
+			PowerIcon11.png = Blue Key
+			PowerIcon12.png = Purple Key
+	Step 5.) Add all 13 images to Custom Objects folder.
+	Note: Name of MyPowers.png image can be anything.
+	Note: Changing the Umbrella here does not alter the in-use graphics.
+	Note: Changing the Hologram here does not alter the in-use graphics.
+____________________________________________________________
+Custom Coins________________________________________________
+	Step 1.) Create a sprite sheets following the template.
+		Frames 0-8 Coin animation
+	Step 2.) Add sprite sheets to Custom Objects folder.
+	Step 3.) Declare sprite sheets in world.ini as follows:
+		[World]
+		Coin=MyCoin.png
+		Note: Name of png image can be anything.
+	Step 4.) If you wish to have your own Coin icon in the Item Bar,
+		Add an image named CoinIcon.png to the Custom Objects folder
+____________________________________________________________
+Custom Artifacts____________________________________________
+	Step 1.) Create a sprite sheets following the template.
+		Frame 0 stopped
+		Frames 1-14 Artifact animation
+		Note: Frame 0 is used for the full-inventory icon
+	Step 2.) Add sprite sheets to Custom Objects folder.
+	Step 3.) Declare sprite sheets in world.ini as follows:
+		[World]
+		Artifact#=MyArtifact.png
+		Note: # is a number 1 to 7
+		Note: Name of png image can be anything.
+	Step 4.) If you wish to have your own Artifact icon in the Item Bar,
+		Add an image named AtifactIcon.png to the Custom Objects folder
+____________________________________________________________
+Golden Creatures Icon_______________________________________
+	Step 1.) If you wish to have your own Creature icon in the Item Bar,
+		Add an image named CreatureIcon.png to the Custom Objects folder
+____________________________________________________________
+List of new commands________________________________________
+Trigger: Spawns an object on the screen
+	TrigBank(A) bank number of object to create
+	TrigObject(A) object number of object to create
+	TrigSpawnX(A) x location to create object
+	TrigSpawnY(A) y location to create object
+	TrigAbsoluteTarget(A) True by default, set False to spawn relative to Trigger object
+	TrigEffect(A) True by default, set False to disable spawn visual effect
+	TrigEffectX(A) x offset for effect, use with objects larger than 24x24 pixels
+	TrigEffectY(A) y offset for effect, use with objects larger than 24x24 pixels
+	TrigTouch(A) False by default, set True to trigger on touch
+	TrigType(A) Changes the shape of the Trigger object
+		0 by default, set to 0, 1, 2, or 3 for Spot, Floor, Circle, or Square
+	TrigVisible(A) True by default, set False to hide trigger
+	TrigDenyHologram(A) False by default, set True to disable Trigger-on-touch when hologram is on
+	TrigSound(A) default sound by default, set to none, switch, door, electronic, or add make a custom sound
+		To make a custom sound for Shifts and Triggers:
+		Step 1.) Create folder "Sounds" in your level's folder
+		Step 2.) Add .ogg audio file to Sounds folder, e.g. Foo.ogg
+		Step 3.) Edit the World.ini to use your sound, e.g. TrigSound(A)=Foo
+	TrigAsOne(A) Makes multiple Triggers of same ID; A, B, or C; act like a single entity --like a wall of Shifts
+		True by default, set False to have each Trigger spawn its own creature.
+	TrigRepeat(A) False by default, set True to allow trigger to be reactivated.
+Shift
+	ShiftSound(A) Now capable of custom sounds
+		To make a custom sound for Shifts and Triggers:
+		Step 1.) Create folder "Sounds" in your level's folder
+		Step 2.) Add .ogg audio file to Sounds folder, e.g. Foo.ogg
+		Step 3.) Edit the World.ini to use your sound, e.g. ShiftSound(A)=Foo
+		Note: Your sounds can replace the default sounds, e.g. Door.ogg
+	ShiftCharacter(A) Changes player character, set to Juni to use default character
+		See "Custom Character" section above for more details
+	ShiftTime(A)=1000, Delays shift 1 second
+	ShiftHide(A)=True, Makes character invisible and immobile, and calls Trigger A
+		Must declare a ShiftTime
+			Character reappears when time is up
+			Shift occurs when time is up
+		Trigger of same ID (A,B,C) must be on screen
+			Preferably invisible and out of player's reach
+			The appropriate Trigger instructions must be included
+	ShiftCoin(A)=#, Allows transactions with collectible coins.
+		Prevents shifting if player's coin count is smaller than #
+		# coins are subtracted from coin count on shift.
+	ShiftSave(A)=#, Replaces save file with a pre-made file
+		Allows you to make player state anything, total control!
+		Player must die or cutscene must play for state to take effect.
+		Allowing the player to save before dieing will nullify effect.
+		Step 1.) Create a save file and name it Savegame#.ini, where # is a name.
+		Step 2.) Place file in your level's directory folder.
+		Step 3.) Include instruction ShiftSave(A)=# in World.ini
+		A good practice for creating this file is to copy a file from the Save directory.
+Sign2(A) Contains a second message
+		Increase the number for more messages
+		The number of messages is unlimited
+		If Sign2(A) exists but Sign(A) does not,
+			then the sign field will be hidden until the first down press
+	SignShift(A)=2, Executes Shift A if down is pressed when message 2 is visible
+		Signs A, B, and C automatically associate with Shifts A, B, and C
+		The appropriate Shift instructions must be included
+		The appropriate Shift object must be on screen
+			Preferably invisible and out of player's reach
+	SignTrig(A)= 2, Executes Trigger A if down is pressed when message 2 is visible
+		Signs A, B, and C automatically associate with Triggers A, B, and C
+		The appropriate Trigger instructions must be included
+		The appropriate Trigger object must be on screen
+			Preferably invisible and out of player's reach
+Cutscene Fade Color
+	[Cutscene Color]
+	Intro=65536
+	Ending=65536
+	;creates black fade transitions
+		Works just like Cutscene Music
+		Default color is white
+		Like custom skin and clothes for Juni calculate the color:
+			Red+(Green*256)+(Blue*256*256)
+			Red, Green, and Blue are on a scale of 0 to 255
+			A value of 0 makes the fade invisible
+			Use 65536 for black (That's 1 bit of blue)
+Map Spoofing
+	[x1010y997]
+	MapX=1000
+	MapY=1000
+		If you open the map at x1010y997 it will appear that you're at x1000y1000.
+		This is to hide duplicate rooms from the player.
+		x1010y997 will not appear on the map.
+	MapVisible=True
+		Forces a room to appear on the map even when it holds map spoofing entries.
+		Use when a room with spoofing data exists at location that other rooms spoof to. 
+	MapVisible=False
+		Hides a room on the map when it holds no map spoofing entries.
+	MapColor=#
+		Chooses the color a room will have on the map
+		# is a number between 0 and 64
+		Red+(Green*4)+(Blue*16)
+		Red, Green, and Blue are on a scale of 0 to 3
+		A value of 64 is identical to MapVisible=False
+		This instruction must be in actual map location.
+	[World]
+	Map=False
+		Turns off the map for KS+ levels
+		Format 2 and earlier levels have it off by default
+		It also removes the Map power from the item bar.
+Flag Warp
+	Flag(All)=True
+	FlagWarpX(All)=#
+	FlagWarpY(All)=#
+		# is a number
+		If all Flags tested are true, then the Flag-All destinations are used
+		You can test any 2 Flags or all 3.
+		Flag-All can also be set to a Flag or Power, so you can test 4 states.
+	Flag(A)=True
+	FlagWarpY(A)=Artifact1
+		Warps the player by the Artifact's count
+		Any Power or Flag can be tested in place of "True" 
+		Any Artifact can be used, 1-7
+		There are 8 possible destinations, 0-7
+		FlagWarpX(A) can be used too, as well as "B", "C", and "All" Flag-Warps
+	To test for the Map Power use:
+		Flag(A)=Power12
+		It may appear to be power 8 from the Item Bar layout and custom power overrides,
+		but it isn't.
+    Flag(A)=Coin2
+        As of version 1.3.5 you can check for each individual collectible coin
+Overlay
+	Overlay=True
+		Makes Layer 2 tiles move between Layers 6 and 7
+		Prevents Layer 7 objects from colliding with Juni or anything else
+Tint
+	[x1000y1000]
+	Tint=#
+		Where # represents a color value
+		Overlays a tint on the screen
+		Like custom skin and clothes for Juni calculate the color:
+			Red+(Green*256)+(Blue*256*256)
+			Red, Green, and Blue are on a scale of 0 to 255
+			Use 65536 for black (That's 1 bit of blue)
+		Once enabled it will remain until disabled.
+		A value of 0 disables it.
+		Signs, Titles, and menus appear above the tint.
+	TintTrans=46
+		Changes the semi-transparency of the overlay.
+		0 is fully opaque, 127 is fully transparent, 46 is the default.
+		You must declare a Tint color for this to act.
+		If you declare an ink effect, this value does nothing.
+	TintInk=Add
+		You can change the way the Tint is applied to the screen
+		Your choices are Add, Sub, AND, OR, XOR
+		Semi-transparent is the default.
+		You must declare a Tint color for this to act.
+Title
+	Title=YourMessageHere
+	Subtitle=YourMessageHere
+		Use with the Title Object, 0:36
+		Both make messages appear at the location of the object.
+		Messages will not reappear unless a different message has been triggered.
+		Messages will remain on screen until they time out, even through room changes.
+		Use a Title Object without instructions to instantly clear messages from other rooms.
+		Only 1 Title object is permitted per room.
+Custom Fonts
+	Step 1.) Create a font image following these guidelines.
+		For Sign and Subtitle fonts your image must be 224 by 91 pixels.
+		For Sign and Subtitle, each character in your image must fit in a rectangle 7 by 13 pixels.
+		For Titles your image must be 416 by 168 pixels.
+		For Titles, each character in your image must fit in a rectangle 13 by 24 pixels.
+		It's better to use a mono-space font.
+		For Sign fonts, make sure the background is clear.
+		For Title and Subtitle fonts, the background is part of the font.
+		Use the following characters in the following order including spaces:
+			 !"#$%&'()*+,-./0123456789:;<=>?
+			@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_
+			`abcdefghijklmnopqrstuvwxyz{|}~
+			ÄÅÇÉÑÖÜáàâäãåçéèêëíìîïñóòôöõúùûü
+			†°¢£§•¶ß®©™´¨≠ÆØ∞±≤≥¥µ∂∑∏π∫ªºΩæø
+			¿¡¬√ƒ≈∆«»… ÀÃÕŒœ–—“”‘’÷◊ÿŸ⁄€‹›ﬁﬂ
+			‡·‚„‰ÂÊÁËÈÍÎÏÌÓÔÒÚÛÙıˆ˜¯˘˙˚¸˝˛ˇ
+		Note: If you need characters that don't exist in this list you can substitute one of these that you don't need with your own, but to have it appear in game you'll need to type the character you're replacing. For example, say I wanted to create my own currency symbol. I could replace $ with my symbol. To have it appear in a Sign I type $.
+	Step 2.) Put the image in your Custom Objects folder.
+	Step 3.) Add the appropriate line to the [World] group of your World.ini
+		Sign=MySignFont.png
+		Title=MyTitleFont.png
+		Subtitle=MySubtitleFont.png
+		Note: Your image can have any name.
+Attachment
+	[x1000y1000]
+	Attach=True
+		Attachments are pictures that stay centred on the player character.
+		True activates the default Attachment which creates a torch effect.
+		False deactivates the Attachment.
+		MyImage.png loads your own picture.
+			Put custom pictures in the Custom Objects folder of your level.
+			Images can be any size, 1210x500 is recommended for full screen covers.
+		Attachments will remain once activated until they are deactivated.
+		Tints, Signs, Titles, and Menus appear over Attachments.
+		When using Overlay, layer 7 objects will appear over the Attachment.
+Loop Music
+	[Loop Music]
+	n=True
+		"n" is a number between 0 and 255.
+		Makes song "n" loop during gameplay.
+		Works on custom and default music.
+Intro Music
+	Sometimes (especially with song loops) you may want an audio clip to play before a song.
+	To do this name the clip Intro#.ogg and place it in the Music folder of your level.
+	"#" is a number matching the song number the clip should precede.
+	Works with custom and default music.
+Single Pass for original KS levels.
+	[World]
+	SinglePass=True
+		Makes a level use single pass rendering by default.
+		Players can override if they wish.
+		Only affects older formats.
+Alternate Death
+	[World]
+	AltDie=True
+		Makes a level use the alternate death sequence.
+		This sequence mimics the sequence from Knytt.
+		Players can override if they wish.
+		
+____________________________________________________________	
+Info Images_________________________________________________
+If you start a new KS+ project with the Level Editor Plus you'll find an image Info.png and another Info+.png in the level's folder. Info.png is the image that appears if a user attempts to play a KS+ level with an earlier version of KS. Info+.png is the image seen when a KS+ level is opened with KS+. The best practice is to leave Info.png as is or make sure it directs players to a location where KS+ can be downloaded. Info+.png is the official info screen image for your KS+ level.
+	Note: When starting a new original KS project with the Level Editor Plus then only the original default Info.png will be found.
+	Note: If Info+.png is absent/deleted then Info.png will be displayed by KS+.
