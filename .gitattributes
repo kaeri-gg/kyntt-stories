@@ -1,0 +1,6 @@
+# Knytt Stories binary data — never apply text/EOL conversion
+*.knytt.bin binary
+*.bin       binary
+*.png       binary
+*.exe       binary
+*.mfa       binary

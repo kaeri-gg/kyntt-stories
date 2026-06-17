@@ -1,0 +1,3 @@
+# CI build output (itch.io bundles are assembled fresh on each release)
+dist/
+release/

@@ -1,0 +1,76 @@
+name: Publish to itch.io
+
+# Publishes the Knytt Stories level to itch.io as two downloads whenever a
+# version tag (v1.0.0, v1.2.3, ...) is pushed. Manual runs are also allowed.
+#
+#   - "knytt-bin" channel: the packed .knytt.bin level file (for people who
+#     already have Knytt Stories and just want to drop the level in).
+#   - "windows" channel: a standalone bundle (KS+ engine + the level) that
+#     runs on its own.
+#
+# The .knytt.bin is repacked from Worlds/Masaru-Level on every run, so the published
+# file can never drift out of sync with the world folder.
+#
+# One-time setup needed in the GitHub repo:
+#   Settings -> Secrets and variables -> Actions, add one secret:
+#     ITCH_IO_API_KEY  (butler API key from https://itch.io/user/settings/api-keys)
+#   The itch.io game page must already exist at kaeri-gg.itch.io/kyntt-stories.
+#
+# To publish:  git tag v1.0.0 && git push origin v1.0.0
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  ITCH_USER: kaeri-gg
+  ITCH_GAME: kyntt-stories
+  WORLD_DIR: Worlds/Masaru-Level
+  KNYTT_BIN_NAME: Masaru.knytt.bin
+  RUNTIME_EXE: Knytt Stories Plus 1080.exe
+
+jobs:
+  publish:
+    name: Build and publish to itch.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Pack .knytt.bin from world folder
+        run: |
+          mkdir -p "dist/knytt-bin"
+          python tools/pack_knytt.py "$WORLD_DIR" "dist/knytt-bin/$KNYTT_BIN_NAME"
+
+      - name: Assemble standalone Windows bundle
+        run: |
+          mkdir -p "dist/windows/Worlds"
+          cp "$RUNTIME_EXE" "dist/windows/"
+          cp Settings.ini "dist/windows/"
+          cp Knyttagreement.txt "dist/windows/"
+          cp tools/itch-bundle-README.txt "dist/windows/README.txt"
+          cp -r Data "dist/windows/Data"
+          cp -r "$WORLD_DIR" "dist/windows/Worlds/"
+          echo "--- bundle contents ---"
+          find "dist/windows" -maxdepth 2 -printf '%y %10s  %p\n' | sort
+
+      - name: Publish to itch.io
+        uses: Ayowel/butler-to-itch@v1.3.0
+        with:
+          butler_key: ${{ secrets.ITCH_IO_API_KEY }}
+          itch_user: ${{ env.ITCH_USER }}
+          itch_game: ${{ env.ITCH_GAME }}
+          version: ${{ github.ref_name }}
+          # <channel> <path>; paths are folders so spaces in filenames are safe.
+          files: |
+            knytt-bin dist/knytt-bin
+            windows dist/windows
