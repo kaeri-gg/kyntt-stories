@@ -4,7 +4,7 @@ Created by Sunny and Kath <3
 
 ## How to run
 - Open the **Level Editor Plus.exe file** - to load the levels,
-- Select the **"Kath Level 1"** and click **"Load Level"**
+- Select the **"Masaru-Level"** and click **"Load Level"**
 - Click the **Test Level** to test it (make sure u save it first before test level)
 - <img width="530" height="484" alt="image" src="https://github.com/user-attachments/assets/7f9c525e-e46d-49c4-a5a6-53561ec4fca3" />
 - Then place the character anywhere in the map.
@@ -37,6 +37,52 @@ Created by Sunny and Kath <3
 
 That's it! Exporting it as a game to me is unknown. So we just use it like that during the playtesting. 
 
-P.S I wasn't able to change the level name "Kath - Level 1" - I dont know how to and it was my trial level but ended up using it. My apologies! 
+## Downloads (on itch.io)
+
+The game ships as **two separate downloads** on
+[kaeri-gg.itch.io/kyntt-stories](https://kaeri-gg.itch.io/kyntt-stories) — pick whichever suits you:
+
+**1. Standalone bundle (`windows` channel)** — easiest, no setup.
+- Download the zip and unzip it anywhere.
+- Run **`Knytt Stories Plus 1080.exe`**.
+- Select **Masaru** (by KathAndSunny) from the level list.
+- Pick a save slot, then click **Start New Game**.
+- Includes the Knytt Stories Plus engine, so you don't need anything else.
+
+**2. Level file only (`knytt-bin` channel)** — for people who already have Knytt Stories.
+- Download `Masaru.knytt.bin`.
+- Drop it into your `Knytt Stories\Worlds\` folder (Knytt Stories installs it automatically), **or**
+  open Knytt Stories → *Install Level* and pick the file.
+- Start it the same way: select **Masaru**, pick a slot, **Start New Game**.
+
+## Controls
+
+Keyboard defaults (all rebindable from the main menu → **Set Controls**):
+
+| Key | Action |
+| --- | --- |
+| ← / → | Walk |
+| **X** (hold) | Run |
+| **Z** | Jump — press again in mid-air for **Double Jump** |
+| **↑** (hold) | Climb (against a climbable wall) |
+| **Shift** (hold) | Umbrella — glide down slowly |
+| **Esc** | Pause / menu |
+| **F12** | Show screen coordinates (handy while designing) |
+
+This level starts you with **Run, Climb and Double Jump** already unlocked.
+
+## Releasing to itch.io
+
+This repo publishes to [kaeri-gg.itch.io/kyntt-stories](https://kaeri-gg.itch.io/kyntt-stories)
+automatically when you push a version tag:
+
+```
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The CI workflow (`.github/workflows/deploy.yml`) repacks `Worlds/Masaru-Level` into a
+`.knytt.bin` and uploads two downloads: the level file (`knytt-bin` channel) and a
+standalone Windows bundle (`windows` channel). Built on Knytt Stories — http://knytt.ni2.se
 
 
